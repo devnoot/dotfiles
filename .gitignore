@@ -1,0 +1,5 @@
+.ctags
+.zcompdump
+tmux/plugins
+.netrwhist
+zsh/zplug
