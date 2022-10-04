@@ -16,7 +16,6 @@ source $ZDOTDIR/zplug/init.zsh
 zplug "apachler/zsh-aws"
 zplug "ael-code/zsh-colored-man-pages"
 zplug "unixorn/prettyping"
-zplug "Kallahan23/zsh-motd"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
