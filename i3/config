@@ -167,8 +167,8 @@ mode "resize" {
 bindsym Mod1+r mode "resize"
 
 # Disable titles - This is required for gaps
-for_window [class=".*"] border pixel 0
-for_window [class="^.*"] border pixel 0
+for_window [class=".*"] border pixel 1
+for_window [class="^.*"] border pixel 1
 
 gaps outer 8
 gaps inner 8
@@ -178,7 +178,7 @@ client.focused          #786B53 #191919 #786B53 #786B53   #786B53
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 
 # Start picom
-exec_always --no-startup-id picom -b --experimental-backends --config $XDG_CONFIG_HOME/picom/picom.conf
+exec_always --no-startup-id /usr/bin/picom -b --experimental-backends --config $HOME/.config/picom/picom.conf
 
 # Start polybar
-exec_always --no-startup-id $XDG_CONFIG_HOME/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
