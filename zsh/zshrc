@@ -1,6 +1,9 @@
 # Start the powerline daemon
-powerline-daemon -q
-. /usr/share/powerline/bindings/zsh/powerline.zsh
+#powerline-daemon -q
+#. /usr/share/powerline/bindings/zsh/powerline.zsh
+
+# Prompt
+PS1="%n@%m %1~ %# "
 
 # this is needed for autocompletion
 autoload -Uz compinit && compinit
@@ -13,7 +16,6 @@ source $ZDOTDIR/zplug/init.zsh
 zplug "apachler/zsh-aws"
 zplug "ael-code/zsh-colored-man-pages"
 zplug "unixorn/prettyping"
-zplug "Kallahan23/zsh-motd"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -27,21 +29,23 @@ fi
 zplug load
 
 # aliases
-alias pacinstall="pacman -Syu"
-alias pacsearch="pacman -Ss"
+alias pacinstall="pacman --color=always -Syu"
+alias pacsearch="pacman --color=always -Ss"
+alias pacinfo="pacman --color=always -Si"
 alias sudo="sudo "
 alias x="exa"
 alias xa="exa -al"
 alias d="mkdir"
 alias r="ranger"
-alias edit-zshrc="$EDITOR $ZDOTDIR/.zshrc"
-alias source-zshrc="source $ZDOTDIR/.zshrc"
-alias edit-zshenv="$EDITOR $HOME/.zshenv"
-alias source-zshenv="source $HOME/.zshenv"
-alias edit-i3-config="$EDITOR $XDG_CONFIG_HOME/i3/config"
-alias edit-kitty-config="$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf"
-alias edit-polybar-config="$EDITOR $XDG_CONFIG_HOME/polybar/config.ini"
 alias lp="lpass"
 alias tw="taskwarrior-tui"
 alias pbcopy="xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
+alias edit-zshrc="$EDITOR $ZDOTDIR/.zshrc"
+alias edit-zshenv="$EDITOR $HOME/.zshenv"
+alias edit-i3-config="$EDITOR $XDG_CONFIG_HOME/i3/config"
+alias edit-kitty-config="$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf"
+alias edit-polybar-config="$EDITOR $XDG_CONFIG_HOME/polybar/config.ini"
+alias source-zshenv="source $HOME/.zshenv"
+alias source-zshrc="source $ZDOTDIR/.zshrc"
+

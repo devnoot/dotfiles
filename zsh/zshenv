@@ -30,6 +30,5 @@ export AWS_SHARED_CREDENTIALS_FILE=$XDG_DATA_HOME/aws/shared-credentials
 # taskwarrior
 export TASKRC=$XDG_CONFIG_HOME/task/config
 export TASKDATA=$XDG_DATA_HOME/task
-
 export DOT=~/.dotfiles
 export PATH=~/.local/bin:$PATH
