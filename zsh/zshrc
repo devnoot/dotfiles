@@ -5,7 +5,7 @@ autoload -Uz bashcompinit && bashcompinit
 # load prompts
 autoload -U promptinit && promptinit
 
-prompt fade blue 
+prompt fade blue black
 
 # load nvm before zplug
 export NVM_DIR="$HOME/.config/nvm"

@@ -13,8 +13,8 @@ export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.local/share
 #export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
-# use vim as the editor
-export EDITOR=gvim
+# use vscode as the editor
+export EDITOR=code
 
 # try to make aws use xdg spec
 export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
@@ -26,5 +26,6 @@ export AWS_SHARED_CREDENTIALS_FILE=$XDG_DATA_HOME/aws/shared-credentials
 # taskwarrior
 export TASKRC=$XDG_CONFIG_HOME/task/config
 export TASKDATA=$XDG_DATA_HOME/task
+
 export DOT=~/.dotfiles
 export PATH=~/.local/bin:$PATH
