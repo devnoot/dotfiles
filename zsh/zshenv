@@ -7,18 +7,13 @@ export ZPLUG_HOME=~/.config/zsh/zplug
 # Display MOTD on login
 export ZSH_MOTD_ALWAYS
 
-# vcxsrv display
-#HOST=$(grep nameserver /etc/resolv.conf | sed 's/nameserver //')
-#export DISPLAY=$HOST:0
-
 # set xdg paths
 export XDG_CACHE_HOME=~/.cache
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.local/share
-#export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
 # use vim as the editor
-export EDITOR=nvim
+export EDITOR=code
 
 # try to make aws use xdg spec
 export AWS_CONFIG_FILE=$XDG_CONFIG_HOME/aws/config
