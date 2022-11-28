@@ -1,9 +1,8 @@
-# Start the powerline daemon
-#powerline-daemon -q
-#. /usr/share/powerline/bindings/zsh/powerline.zsh
+# this is needed for zsh prompt
+autoload -Uz promptinit && promptinit
 
-# Prompt
-PS1="%n@%m %1~ %# "
+# set the prompt
+prompt fade green
 
 # this is needed for autocompletion
 autoload -Uz compinit && compinit
@@ -29,14 +28,14 @@ fi
 zplug load
 
 # aliases
-alias pacinstall="pacman --color=always -Syu"
-alias pacsearch="pacman --color=always -Ss"
-alias pacinfo="pacman --color=always -Si"
+# alias pacinstall="pacman --color=always -Syu"
+# alias pacsearch="pacman --color=always -Ss"
+# alias pacinfo="pacman --color=always -Si"
 alias sudo="sudo "
 alias x="exa"
 alias xa="exa -al"
-alias d="mkdir"
-alias r="ranger"
+# alias d="mkdir"
+# alias r="ranger"
 alias lp="lpass"
 alias tw="taskwarrior-tui"
 alias pbcopy="xsel --clipboard --input"
@@ -48,4 +47,3 @@ alias edit-kitty-config="$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf"
 alias edit-polybar-config="$EDITOR $XDG_CONFIG_HOME/polybar/config.ini"
 alias source-zshenv="source $HOME/.zshenv"
 alias source-zshrc="source $ZDOTDIR/.zshrc"
-
