@@ -1,0 +1,12 @@
+{
+    "editor.inlineSuggest.enabled": true,
+    "workbench.colorTheme": "Gruvbox Glass",
+    "git.autofetch": true,
+    "vim.easymotion": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+        }
+    ]
+}

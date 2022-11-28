@@ -1,5 +1,5 @@
 # lazy load nvm
-#export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD=true
 
 export ZDOTDIR=~/.config/zsh
 export ZPLUG_HOME=~/.config/zsh/zplug
@@ -12,7 +12,7 @@ export XDG_CACHE_HOME=~/.cache
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.local/share
 
-# use vim as the editor
+# use code as the editor
 export EDITOR=code
 
 # try to make aws use xdg spec
@@ -25,5 +25,6 @@ export AWS_SHARED_CREDENTIALS_FILE=$XDG_DATA_HOME/aws/shared-credentials
 # taskwarrior
 export TASKRC=$XDG_CONFIG_HOME/task/config
 export TASKDATA=$XDG_DATA_HOME/task
+
 export DOT=~/.dotfiles
 export PATH=~/.local/bin:$PATH
