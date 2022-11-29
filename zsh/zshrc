@@ -6,11 +6,11 @@ autoload -Uz bashcompinit && bashcompinit
 autoload -U promptinit && promptinit
 
 # set the prompt
-prompt fade green
+prompt fade blue black
 
-# load nvm before zplug
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
 
 # load zplug
 source $ZDOTDIR/zplug/init.zsh
@@ -19,6 +19,7 @@ source $ZDOTDIR/zplug/init.zsh
 zplug "apachler/zsh-aws"
 zplug "ael-code/zsh-colored-man-pages"
 zplug "unixorn/prettyping"
+zplug "lukechilds/zsh-nvm"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -40,6 +41,7 @@ alias x="exa"
 alias xa="exa -al"
 # alias d="mkdir"
 # alias r="ranger"
+alias ls="exa"
 alias lp="lpass"
 alias tw="taskwarrior-tui"
 alias pbcopy="xsel --clipboard --input"
