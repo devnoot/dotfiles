@@ -11,7 +11,6 @@ My dotfiles
 - [npm](#npm)
 - [nvim](#nvim)
 - [taskwarrior](#taskwarrior)
-- [tmux](#tmux)
 - [vscode](#vscode)
 - [zsh](#zsh)
 
@@ -123,12 +122,6 @@ To use these, in KDE, navigate to **System Settings** -> **Shortcuts** -> **Impo
 ## taskwarrior
 
 * Sets data location to `~/.local/share/task`
-
-## tmux
-
-* [tpm](https://github.com/tmux-plugins/tpm) is required to manage plugins
-
-* TODO: Document keybinds. For now, see `tmux/tmux.conf`
 
 ## vscode
 
