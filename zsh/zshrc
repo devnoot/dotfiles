@@ -6,7 +6,7 @@ autoload -Uz bashcompinit && bashcompinit
 autoload -U promptinit && promptinit
 
 # set the prompt
-prompt fade blue black
+prompt suse 
 
 export NVM_DIR="$HOME/.config/nvm"
 export NVM_LAZY_LOAD=true
