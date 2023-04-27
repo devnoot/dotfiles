@@ -1,0 +1,26 @@
+""" Set SPACE to LEADER """
+let mapleader=" "
+
+""" PLUGINS """
+set surround
+set easymotion
+set ReplaceWithRegister
+
+""" COMMON """
+set showmode
+set incsearch
+set nu
+set so=5
+set laststatus=2
+set cmdheight=2
+
+
+""" MAPPINGS """
+inoremap jk <ESC>
+map <leader>f <Plug>(easymotion-f)
+map <leader>s <Plug>(easymotion-s)
+map <leader>r <Action>(RenameElement)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map gd <Action>(GoToDefinition)
+map <leader>u <Action>(FindUsages)
+nnoremap <C-L> :nohl<CR><C-L>
