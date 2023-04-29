@@ -41,12 +41,12 @@ globals.fzf_preview_window = {
 	'right:50%', 'ctrl-/'
 }
 globals.fzf_tags_command = 'ctags -R'
-globals.coc_global_extensions = {
-	'coc-json', 'coc-git', 'coc-html', 'coc-css',
-	'coc-tsserver', 'coc-docker', 'coc-emmet', 'coc-fzf-preview',
-	'coc-sh', 'coc-spell-checker', 'coc-sql', 'coc-yaml',
-	'coc-lua'
-}
+--globals.coc_global_extensions = {
+--	'coc-json', 'coc-git', 'coc-html', 'coc-css',
+--	'coc-tsserver', 'coc-docker', 'coc-emmet', 'coc-fzf-preview',
+--	'coc-sh', 'coc-spell-checker', 'coc-sql', 'coc-yaml',
+--	'coc-lua'
+--}
 globals.EasyMotion_do_mapping = 0	-- Disable default mappings
 globals.EasyMotion_smartcase = 1
 
@@ -70,7 +70,6 @@ autocmd("FileType", {
 
 call('plug#begin', '~/.config/nvim/plugged')
 Plug('vim-airline/vim-airline')
-Plug('neoclide/coc.nvim', {branch = 'release'})
 Plug('junegunn/fzf')
 Plug('preservim/tagbar')
 Plug('pangloss/vim-javascript')
@@ -86,9 +85,11 @@ Plug('kyazdani42/nvim-web-devicons')
 Plug('kyazdani42/nvim-tree.lua')
 --Plug 'morhetz/gruvbox'
 Plug('christoomey/vim-tmux-navigator')
+Plug('mustache/vim-mustache-handlebars')
 call('plug#end')
 
+
 require('keybinds')
-require('coc')
+---require('coc')
 require('nvim-tree').setup()
 require("zen-mode").setup()
