@@ -67,6 +67,8 @@ return require('packer').startup(function(use)
     }
   }
 
+  use 'tpope/vim-surround'
+
 --Plug('junegunn/fzf')
 --Plug('pangloss/vim-javascript')
 --Plug('leafgarland/typescript-vim')
