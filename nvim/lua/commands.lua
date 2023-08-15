@@ -7,6 +7,12 @@ cmd("syntax enable")
 -- don't pass messages to |ins-completion-menu|
 cmd("set shortmess+=c")
 
+-- Use showtabline in gui vim
+cmd("set guioptions-=e")
+
+-- store tabpages and globals in session
+cmd("set sessionoptions+=tabpages,globals")
+
 autocmd("BufWritePre", {
 	pattern = "",
 	command = "%s/\\s\\+$//e"

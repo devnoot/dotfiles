@@ -9,10 +9,11 @@ require('keybinds')
 require('plugins.coq')
 require('plugins.lsp')
 require('plugins.nvim-tree')
-require('plugins.chatgpt')
+require('plugins.notify')
+require('plugins.fterm')
 
+require("tint").setup()
 require('zen-mode').setup()
-require('lualine').setup()
 
 -- Keep theme last
 require('theme')

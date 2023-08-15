@@ -5,13 +5,10 @@ local setkey = vim.keymap.set
 
 lspconfig.pyright.setup(coq.lsp_ensure_capabilities{})
 lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{})
-lspconfig.svelte.setup(coq.lsp_ensure_capabilities{})
-lspconfig.tailwindcss.setup(coq.lsp_ensure_capabilities{})
 lspconfig.dockerls.setup(coq.lsp_ensure_capabilities{})
 lspconfig.docker_compose_language_service.setup(coq.lsp_ensure_capabilities{})
 lspconfig.emmet_ls.setup(coq.lsp_ensure_capabilities{})
 lspconfig.eslint.setup(coq.lsp_ensure_capabilities{})
-lspconfig.graphql.setup(coq.lsp_ensure_capabilities{})
 lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{})
 
 -- Use LspAttach autocommand to only map the following keys

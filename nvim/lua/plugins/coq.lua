@@ -4,4 +4,5 @@ vim.g.coq_settings = {
   clients = {
     tmux = { enabled = false },
   },
+  keymap = { jump_to_mark = "<ctrl-H>" }
 }

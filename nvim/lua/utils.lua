@@ -17,4 +17,15 @@ function Utils.xnoremap(lhs, rhs) noremap('x', lhs, rhs) end
 function Utils.setopt(opt, val) vim.opt[opt] = val end
 function Utils.setglobal(opt, val) vim.g[opt] = val end
 
+function _G.reload_nvim_conf()
+  for name,_ in pairs(package.loaded) do
+    if name:match('^core') or name:match('^lsp') or name:match('^plugins') then
+      package.loaded[name] = nil
+    end
+  end
+
+  dofile(vim.env.MYVIMRC)
+  vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+end
+
 return Utils
