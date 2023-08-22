@@ -1,15 +1,18 @@
 -- Setup language servers.
 local lspconfig = require 'lspconfig'
-local coq = require 'coq'
 local setkey = vim.keymap.set
 
-lspconfig.pyright.setup(coq.lsp_ensure_capabilities{})
-lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{})
-lspconfig.dockerls.setup(coq.lsp_ensure_capabilities{})
-lspconfig.docker_compose_language_service.setup(coq.lsp_ensure_capabilities{})
-lspconfig.emmet_ls.setup(coq.lsp_ensure_capabilities{})
-lspconfig.eslint.setup(coq.lsp_ensure_capabilities{})
-lspconfig.jsonls.setup(coq.lsp_ensure_capabilities{})
+-- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
+require'lspconfig'.lua_ls.setup{}
+
+-- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
+require'lspconfig'.eslint.setup{}
+
+-- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+require'lspconfig'.tailwindcss.setup{}
+
+-- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
+require'lspconfig'.tsserver.setup{}
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -28,7 +31,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Workspaces
     setkey('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
-    setkey('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
 
     -- Go to declaration/def/implementation/etc.
     setkey('n', 'gD',           vim.lsp.buf.declaration, opts)
@@ -38,6 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     setkey('n', 'gi',           vim.lsp.buf.implementation, opts)
     setkey('n', '<C-k>',        vim.lsp.buf.signature_help, opts)
     setkey('n', '<Leader>D',    vim.lsp.buf.type_definition, opts)
+    setkey('n', '<Leader>ca',   vim.lsp.buf.code_action, opts)
 
     -- List the workspace folders
     setkey('n', '<Leader>wl', function()

@@ -4,6 +4,18 @@ return require('packer').startup(function(use)
   -- @url https://github.com/wbthomason/packer.nvim
   use 'wbthomason/packer.nvim'
 
+  -- Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.
+  -- @url https://github.com/williamboman/mason.nvim
+  use 'williamboman/mason.nvim'
+
+  -- Quickstart configs for Nvim LSP
+  -- @url https://github.com/neovim/nvim-lspconfig
+ use 'neovim/nvim-lspconfig'
+
+  -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim.
+  -- @url https://github.com/williamboman/mason-lspconfig.nvim
+  use 'williamboman/mason-lspconfig.nvim'
+
   -- 🧘 Distraction-free coding for Neovim
   -- @url https://github.com/folke/zen-mode.nvim
   use 'folke/zen-mode.nvim'
@@ -48,9 +60,9 @@ return require('packer').startup(function(use)
         show_devicons = true,
         show_bufnr = true,
         show_filename_only = false,
-        modified_icon = "+ ",
+        modified_icon = "(+) ",
         modified_italic = false,
-        show_tabs_only = false,
+        show_tabs_only = true,
       }
     }
   end,
@@ -60,30 +72,26 @@ return require('packer').startup(function(use)
   }
 }
 
-  -- Quickstart configs for Nvim LSP
-  -- @url https://github.com/neovim/nvim-lspconfig
-  use 'neovim/nvim-lspconfig'
-
-  -- Fast as FUCK nvim completion. SQLite, concurrent scheduler, hundreds of hours of optimization.
-  -- @url https://github.com/ms-jpq/coq_nvim
-  use {
-    'ms-jpq/coq_nvim',
-    branch = 'coq'
-  }
-
-  -- No description
-  -- @url https://github.com/ms-jpq/coq.artifacts
-  use {
-    'ms-jpq/coq.artifacts',
-    branch = 'artifacts'
-  }
-
-  -- Module lua sources for `coq.nvim`, first & third party
-  -- @url https://github.com/ms-jpq/coq.thirdparty
-  use {
-    'ms-jpq/coq.thirdparty',
-    branch = '3p'
-  }
+--  -- Fast as FUCK nvim completion. SQLite, concurrent scheduler, hundreds of hours of optimization.
+--  -- @url https://github.com/ms-jpq/coq_nvim
+--  use {
+--    'ms-jpq/coq_nvim',
+--    branch = 'coq'
+--  }
+--
+--  -- No description
+--  -- @url https://github.com/ms-jpq/coq.artifacts
+--  use {
+--    'ms-jpq/coq.artifacts',
+--    branch = 'artifacts'
+--  }
+--
+--  -- Module lua sources for `coq.nvim`, first & third party
+--  -- @url https://github.com/ms-jpq/coq.thirdparty
+--  use {
+--    'ms-jpq/coq.thirdparty',
+--    branch = '3p'
+--  }
 
   -- emmet for vim: http://emmet.io/
   -- @url https://github.com/mattn/emmet-vim
@@ -132,5 +140,19 @@ return require('packer').startup(function(use)
     "folke/trouble.nvim",
     requires = { "nvim-tree/nvim-web-devicons" }
   }
+
+  -- ChatGPT Neovim Plugin: Effortless Natural Language Generation with OpenAI's ChatGPT API
+  -- @url https://github.com/jackMort/ChatGPT.nvim
+  use({
+  "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
 
 end)

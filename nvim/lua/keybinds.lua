@@ -44,3 +44,9 @@ setkey('n', '<leader>fh', builtin.help_tags, {})
 -- Reload vim
 setkey('n', '<C-r>',        '<cmd>lua reload_nvim_conf()<CR>')
 
+-- ChatGPT
+setkey('n', '<leader>ai',           ':ChatGPT<CR>')
+setkey('n', '<leader><leader>ai',   ':ChatGPTActAs<CR>')
+
+-- Meson
+setkey('n', '<c-m>', ':Mason<CR>')
