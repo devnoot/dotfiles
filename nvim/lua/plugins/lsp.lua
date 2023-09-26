@@ -1,57 +1,89 @@
--- Setup language servers.
-local lspconfig = require 'lspconfig'
-local setkey = vim.keymap.set
+-- Quickstart configs for Nvim LSP
+-- @url https://github.com/neovim/nvim-lspconfig
 
--- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
-require'lspconfig'.lua_ls.setup{}
+return {
 
--- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
-require'lspconfig'.eslint.setup{}
+  'neovim/nvim-lspconfig',
 
--- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
-require'lspconfig'.tailwindcss.setup{}
+  dependencies = {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'lvimuser/lsp-inlayhints.nvim',
+  },
 
--- Url: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-require'lspconfig'.tsserver.setup{}
+  cmd = {'LspInfo', 'LspInstall', 'LspUninstall'},
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+  event = {'BufReadPost', 'BufNewFile'},
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = ev.buf }
+  config = function ()
+    local lsp = require('lspconfig')
 
-    -- Rename symbol
-    setkey('n', '<Leader>rn',   vim.lsp.buf.rename, opts)
+    vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+      vim.lsp.handlers.hover,
+      {border = 'rounded'}
+    )
 
-    -- Workspaces
-    setkey('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+      {border = 'rounded'}
+    )
 
-    -- Go to declaration/def/implementation/etc.
-    setkey('n', 'gD',           vim.lsp.buf.declaration, opts)
-    setkey('n', 'gd',           vim.lsp.buf.definition, opts)
-    setkey('n', 'gr',           vim.lsp.buf.references, opts)
-    setkey('n', 'K',            vim.lsp.buf.hover, opts)
-    setkey('n', 'gi',           vim.lsp.buf.implementation, opts)
-    setkey('n', '<C-k>',        vim.lsp.buf.signature_help, opts)
-    setkey('n', '<Leader>D',    vim.lsp.buf.type_definition, opts)
-    setkey('n', '<Leader>ca',   vim.lsp.buf.code_action, opts)
+    lsp.tsserver.setup({
+      settings = {
+        typescript = {
+          inlayHints = {
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          }
+        },
+        javascript = {
+          inlayHints = {
+            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayVariableTypeHints = true,
+            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayEnumMemberValueHints = true,
+          }
+        }
+      }
+    })
 
-    -- List the workspace folders
-    setkey('n', '<Leader>wl', function()
-      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, opts)
+    lsp.lua_ls.setup{}
+    lsp.volar.setup{}
 
-    -- Format code
-    setkey('n', '<Leader>rf', function()
-      vim.lsp.buf.format { async = true }
-    end, opts)
+    vim.api.nvim_create_autocmd('LspAttach', {
 
+      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+
+      callback = function(ev)
+
+        if not (ev.data and ev.data.client_id) then
+          return
+        end
+
+        local bufnr = ev.buf
+        local client = vim.lsp.get_client_by_id(ev.data.client_idI)
+        require('lsp-inlayhints').on_attach(client, bufnr)
+
+      end
+    })
   end,
-})
 
+  keys = {
+    {'<leader>e', vim.diagnostic.open_float},
+    {'[d', vim.diagnostic.goto_prev},
+    {']d', vim.diagnostic.goto_next},
+    {'<leader>q', vim.diagnostic.setloclist},
+    {'<c-s>', vim.lsp.buf.signature_help}
+  },
+
+}

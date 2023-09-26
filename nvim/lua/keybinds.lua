@@ -1,10 +1,10 @@
 local setkey = vim.keymap.set
+local map = vim.api.nvim_set_keymap
+--local lsp_ui = require('LspUI').api
 
 -- Window & Misc
 setkey('n', '<space>',      '', { noremap = true, silent = true })
 setkey('n', '<leader>n',    ':NvimTreeToggle<CR>')
-setkey('n', '<leader>]',    ':bn<CR>')
-setkey('n', '<leader>[',    ':bp<CR>')
 setkey('n', '<leader>z',    ':ZenMode<CR>')
 setkey('n', '<c-h>',        '<c-w>h')
 setkey('n', '<c-j>',        '<c-w>j')
@@ -13,40 +13,58 @@ setkey('n', '<c-l>',        '<c-w>l')
 setkey('n', '<F8>',         ':TagbarToggle<CR>')
 setkey("i", "jk",           "<Esc>")
 
--- Easymotion
-setkey('n', '<leader><leader>f',  '<Plug>(easymotion-bd-f)')
-setkey('n', '<leader><leader>l',  '<Plug>(easymotion-bd-jk)')
-setkey('n', '<leader><leader>w',  '<Plug>(easymotion-bd-w)')
-setkey('n', '<leader><leader>s',  '<Plug>(easymotion-s2)')
-setkey('n', '<leader><leader>n',  '<Plug>(easymotion-next)')
-setkey('n', '<leader><leader>n',  '<Plug>(easymotion-prev)')
-setkey('n', '<leader><leader>j',  '<Plug>(easymotion-j)')
-setkey('n', '<leader><leader>k',  '<Plug>(easymotion-k)')
-setkey('n', '/',            '<Plug>(easymotion-sn)')
-setkey('o', '/',            '<Plug>(easymotion-tn)')
+setkey('n', '<leader><enter>', ':noh<CR>')
 
 -- Splits
 setkey('n', '<leader>v',    ':vsp<CR>')
 setkey('n', '<leader>x',    ':sp<CR>')
 
 -- Goto Diagnostics
-setkey('n', 'g]',           vim.diagnostic.goto_next)
-setkey('n', 'g[',           vim.diagnostic.goto_prev)
+setkey('n', 'gn',           vim.diagnostic.goto_next)
+setkey('n', 'gp',           vim.diagnostic.goto_prev)
 setkey('n', 'gf',           vim.diagnostic.open_float)
-
--- Telescope
-local builtin = require('telescope.builtin')
-setkey('n', '<leader>ff', builtin.find_files, {})
-setkey('n', '<leader>fg', builtin.live_grep, {})
-setkey('n', '<leader>fb', builtin.buffers, {})
-setkey('n', '<leader>fh', builtin.help_tags, {})
 
 -- Reload vim
 setkey('n', '<C-r>',        '<cmd>lua reload_nvim_conf()<CR>')
 
--- ChatGPT
-setkey('n', '<leader>ai',           ':ChatGPT<CR>')
-setkey('n', '<leader><leader>ai',   ':ChatGPTActAs<CR>')
-
 -- Meson
-setkey('n', '<c-m>', ':Mason<CR>')
+setkey('n', '<F12>', ':Mason<CR>')
+
+-- barbar.nvim
+local opts = { noremap = true, silent = true }
+-- Move to previous/next
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+-- Re-order to previous/next
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+-- Goto buffer in position...
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+-- Pin/unpin buffer
+map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+-- Close buffer
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+-- Sort automatically by...
+map('n', '<Leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
+map('n', '<Leader>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
+map('n', '<Leader>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
+map('n', '<Leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)

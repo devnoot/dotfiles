@@ -1,7 +1,8 @@
 local Utils = require('utils')
 local setopt = Utils.setopt
+local setglobal = Utils.setglobal
 
--- TODO
+-- :h 'hidden'
 setopt('hidden', true)
 
 -- command line height
@@ -12,6 +13,8 @@ setopt('updatetime', 250)
 
 -- show line numbers
 setopt('number', true)
+
+setopt('rnu', true)
 
 -- show matches
 setopt('showmatch', true)
