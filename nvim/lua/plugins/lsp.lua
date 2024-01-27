@@ -79,11 +79,11 @@ return {
   end,
 
   keys = {
-    {'<leader>e', vim.diagnostic.open_float},
-    {'[d', vim.diagnostic.goto_prev},
-    {']d', vim.diagnostic.goto_next},
-    {'<leader>q', vim.diagnostic.setloclist},
-    {'<c-s>', vim.lsp.buf.signature_help}
+    {'<leader>e', vim.diagnostic.open_float, desc = 'Open float'},
+    {'[d', vim.diagnostic.goto_prev, desc = 'Go to prev'},
+    {']d', vim.diagnostic.goto_next, desc = 'Go to next'},
+    {'<leader>q', vim.diagnostic.setloclist, desc = 'Add buffer diagnostics to the location list'},
+    {'<c-s>', vim.lsp.buf.signature_help, desc = 'Signature help'}
   },
 
 }

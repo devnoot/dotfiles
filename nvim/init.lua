@@ -20,9 +20,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-  -- Keep the colorscheme first!
-  { import = "plugins.colorscheme" },
-
   { import = 'plugins.treesitter' },
 
   { import = 'plugins.nvim-tree' },

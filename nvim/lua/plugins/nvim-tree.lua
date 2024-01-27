@@ -14,7 +14,7 @@ return {
   end,
 
   keys = {
-    { '<leader>n', '<cmd>NvimTreeToggle<cr>', desc = "NvimTree Toggle" },
+    { '<leader>n', '<cmd>NvimTreeToggle<cr>', desc = "Toggle File Browser" },
   },
 
   dependencies = {
