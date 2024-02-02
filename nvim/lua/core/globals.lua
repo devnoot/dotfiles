@@ -1,10 +1,6 @@
 local Utils = require('utils')
 local setglobal = Utils.setglobal
 
--- See https://github.com/nvim-tree/nvim-tree.lua
-setglobal('loaded_netrw', 1)
-setglobal('loaded_netrwPlugin', 1)
-
 -- use <Space> as leader
 setglobal('mapleader', ' ')
 

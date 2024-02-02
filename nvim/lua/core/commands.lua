@@ -4,8 +4,6 @@ local autocmd = vim.api.nvim_create_autocmd
 -- enable syntax highlighting
 cmd("syntax enable")
 
-cmd("colorscheme retrobox")
-
 -- don't pass messages to |ins-completion-menu|
 --cmd("set shortmess+=c")
 

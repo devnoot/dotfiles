@@ -5,8 +5,9 @@ local setglobal = Utils.setglobal
 -- :h 'hidden'
 setopt('hidden', true)
 
--- command line height
-setopt('cmdheight', 1)
+-- don't show comand line height. When you are in command mode, it will just write over
+-- the statusline
+setopt('cmdheight', 0)
 
 -- decrease time to update
 setopt('updatetime', 250)
@@ -14,6 +15,7 @@ setopt('updatetime', 250)
 -- show line numbers
 setopt('number', true)
 
+-- show relative line numbers
 setopt('rnu', true)
 
 -- show matches

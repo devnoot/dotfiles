@@ -1,6 +1,11 @@
 return {
+
   'jinzhongjia/LspUI.nvim',
+
   branch = 'main',
+
+  lazy = false,
+
   keys = {
     {'gD',           '<cmd>LspUI declaration<CR>', { desc = "Declaration" }},
     {'gd',           '<cmd>LspUI definition<CR>',  { desc = "Definition" }},

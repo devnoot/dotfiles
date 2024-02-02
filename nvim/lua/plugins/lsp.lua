@@ -32,26 +32,26 @@ return {
       settings = {
         typescript = {
           inlayHints = {
-            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHints = 'none',
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
+            includeInlayFunctionParameterTypeHints = false,
+            includeInlayVariableTypeHints = false,
             includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = false,
             includeInlayFunctionLikeReturnTypeHints = true,
             includeInlayEnumMemberValueHints = true,
           }
         },
         javascript = {
           inlayHints = {
-            includeInlayParameterNameHints = 'all',
+            includeInlayParameterNameHints = 'none',
             includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = true,
-            includeInlayVariableTypeHints = true,
+            includeInlayFunctionParameterTypeHints = false,
+            includeInlayVariableTypeHints = false,
             includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayPropertyDeclarationTypeHints = false,
             includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
+            includeInlayEnumMemberValueHints = true
           }
         }
       }
