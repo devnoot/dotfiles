@@ -12,6 +12,8 @@ return {
     'rcarriga/nvim-notify'
   },
 
+  lazy = false,
+
   config = function()
     require('telescope').setup{}
     require('telescope').load_extension('notify')

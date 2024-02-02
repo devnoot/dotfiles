@@ -11,6 +11,8 @@ return {
     'lvimuser/lsp-inlayhints.nvim',
   },
 
+  lazy = false,
+
   cmd = {'LspInfo', 'LspInstall', 'LspUninstall'},
 
   event = {'BufReadPost', 'BufNewFile'},

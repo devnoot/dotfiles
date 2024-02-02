@@ -11,9 +11,37 @@ return {
 
       theme = 'hyper',
 
-      shortcut_type = 'letter',
-
       config = {
+
+      shortcut = {
+        {
+          icon = ' ',
+          icon_hl = '@variable',
+          desc = 'Files',
+          group = 'Label',
+          action = 'Telescope find_files',
+          key = 'f',
+        },
+        {
+          desc = 'Live Grep',
+          group = 'Label',
+          action = 'Telescope live_grep',
+          key = 'g',
+        },
+        {
+          desc = 'Buffers',
+          group = 'Label',
+          action = 'Telescope buffers',
+          key = 'b',
+
+        },
+        {
+          desc = 'Sync Plugins',
+          group = '@property',
+          action = 'Lazy sync',
+          key = 's'
+        },
+      },
 
         header = {
 "            :h-                                  Nhy`               ",
@@ -51,6 +79,13 @@ return {
 "                           yNh/..------..`                          ",
 "                                                                    ",
 
+        },
+
+        footer = {
+          "",
+          "Rip and tear",
+          "Until it is done",
+          ""
         }
 
       }
