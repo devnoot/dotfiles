@@ -17,7 +17,7 @@ return {
           {
             desc = 'Explore files',
             group = 'Label',
-            action = 'NnnExplorer %:p:h',
+            action = ':Neotree',
             key = 'e',
           },
           {

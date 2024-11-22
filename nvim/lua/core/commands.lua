@@ -5,7 +5,7 @@ local autocmd = vim.api.nvim_create_autocmd
 cmd("syntax enable")
 
 -- don't pass messages to |ins-completion-menu|
---cmd("set shortmess+=c")
+cmd("set shortmess+=c")
 
 -- Use showtabline in gui vim
 --cmd("set guioptions-=e")
