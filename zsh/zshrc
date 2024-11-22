@@ -1,24 +1,29 @@
-# Load starship prompt
-eval "$(starship init zsh)"
-
 # Export variables
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/.local/share"
 export DOOMWADDIR="$HOME/Wads"
 export NVM_DIR="$HOME/.local/nvm"
-export TASKRC="$XDG_CONFIG_DIR/taskwarrior/config"
-export TASKDATA="$XDG_DATA_DIR/taskwarrior"
 export VIT_DIR="$XDG_CONFIG_DIR/vit"
 export EDITOR="nvim"
 export RUSTUP_HOME="$XDG_DATA_DIR/rustup"
 export CARGO_HOME="$XDG_DATA_DIR/cargo"
 
-# Load nvm
+source prompt_noot_setup.zsh
+
+preexec() {
+  echo "\n"
+}
+
+precmd() {
+  echo "\n"
+}
+
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Aliases
 alias l="exa -l"
