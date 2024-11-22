@@ -8,14 +8,11 @@ export EDITOR="nvim"
 export RUSTUP_HOME="$XDG_DATA_DIR/rustup"
 export CARGO_HOME="$XDG_DATA_DIR/cargo"
 
-source prompt_noot_setup.zsh
-
-preexec() {
-  echo "\n"
-}
+autoload -Uz compinit promptinit
+source "$ZDOTDIR/prompt_noot_setup.zsh"
 
 precmd() {
-  echo "\n"
+  echo ""
 }
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

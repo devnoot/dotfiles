@@ -1,1 +1,1 @@
-/home/tony/.config/zsh/zshrc
+zshrc
