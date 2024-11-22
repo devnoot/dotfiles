@@ -51,7 +51,7 @@ prompt_noot_setup () {
   prompt_noot_color3=${3:-'cyan'}    # user@host
   prompt_noot_color4=${4:-'white'}   # user input
 
-  local prompt_gfx_bbox 
+  local prompt_gfx_bbox
   prompt_gfx_tbox="%B%F{$prompt_noot_color1}${prompt_gfx_tlc}%b%F{$prompt_noot_color1}${prompt_gfx_hyphen}"
   prompt_gfx_bbox="%B%F{$prompt_noot_color1}${prompt_gfx_blc}${prompt_gfx_hyphen}%b%F{$prompt_noot_color1}"
 
@@ -113,7 +113,7 @@ prompt_noot_choose_prompt () {
     return
   fi
 
-  # Still didn't fit; truncate 
+  # Still didn't fit; truncate
   local prompt_pwd_size=$(( COLUMNS - 5 ))
   prompt_line_1="$prompt_gfx_tbox$prompt_l_paren%B%F{$prompt_noot_color2}%$prompt_pwd_size<...<%~%<<$prompt_r_paren%b%F{$prompt_noot_color1}$prompt_gfx_hyphen"
 }

@@ -1,3 +1,6 @@
+autoload -Uz promptinit && promptinit
+source "$ZDOTDIR/prompt_noot_setup.zsh"
+
 # Export variables
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/.local/share"
@@ -8,15 +11,7 @@ export EDITOR="nvim"
 export RUSTUP_HOME="$XDG_DATA_DIR/rustup"
 export CARGO_HOME="$XDG_DATA_DIR/cargo"
 
-source prompt_noot_setup.zsh
-
-preexec() {
-  echo "\n"
-}
-
-precmd() {
-  echo "\n"
-}
+precmd() { echo "" }
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
