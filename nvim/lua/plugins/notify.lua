@@ -5,8 +5,8 @@ return {
     require('notify').setup({
       stages = 'slide',
       render = 'compact',
-      timeout = 2500,
-      top_down = false
+      timeout = 1500,
+      top_down = true
     })
 
     vim.notify = require("notify")

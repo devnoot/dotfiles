@@ -8,7 +8,6 @@ return {
   dependencies = {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
-    'lvimuser/lsp-inlayhints.nvim',
   },
 
   lazy = false,
@@ -30,54 +29,15 @@ return {
       {border = 'rounded'}
     )
 
-    lsp.tsserver.setup({
-      settings = {
-        typescript = {
-          inlayHints = {
-            includeInlayParameterNameHints = 'none',
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = false,
-            includeInlayVariableTypeHints = false,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = false,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true,
-          }
-        },
-        javascript = {
-          inlayHints = {
-            includeInlayParameterNameHints = 'none',
-            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-            includeInlayFunctionParameterTypeHints = false,
-            includeInlayVariableTypeHints = false,
-            includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-            includeInlayPropertyDeclarationTypeHints = false,
-            includeInlayFunctionLikeReturnTypeHints = true,
-            includeInlayEnumMemberValueHints = true
-          }
-        }
-      }
-    })
-
+    lsp.ts_ls.setup{}
     lsp.lua_ls.setup{}
     lsp.volar.setup{}
 
-    vim.api.nvim_create_autocmd('LspAttach', {
-
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-
-      callback = function(ev)
-
-        if not (ev.data and ev.data.client_id) then
-          return
-        end
-
-        local bufnr = ev.buf
-        local client = vim.lsp.get_client_by_id(ev.data.client_idI)
-        require('lsp-inlayhints').on_attach(client, bufnr)
-
-      end
-    })
+--    vim.api.nvim_create_autocmd('LspAttach', {
+--
+--      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+--
+--    })
   end,
 
   keys = {
