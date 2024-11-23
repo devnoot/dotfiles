@@ -1,3 +1,42 @@
+# Prompt setup
+autoload -Uz promptinit && promptinit
+source "$ZDOTDIR/prompt_noot_setup.zsh"
+
+autoload -Uz compinit && compinit
+
+# Set up directory expansion
+setopt autocd
+setopt menucomplete
+bindkey "^I" expand-or-complete
+
+# Set up directory stack shortcuts
+setopt autopushd
+setopt pushdignoredups
+
+# Append history across sessions instead of overwriting it
+setopt appendhistory
+setopt extendedhistory
+setopt histignoredups
+setopt incappendhistory
+
+# Cycle through completion options like a menu.
+setopt menucomplete
+
+# Auto complete key-value pairs for options
+setopt autoparamkeys
+
+# Enable spelling auto correct for commands
+setopt correct
+
+# Prevent overwriting files with > unless forced with >|
+setopt noclobber
+
+# Show detailed info for background jobs
+setopt longlistjobs
+
+# Notify when a background job finishes
+setopt notify
+
 # Export variables
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/.local/share"
@@ -8,16 +47,15 @@ export EDITOR="nvim"
 export RUSTUP_HOME="$XDG_DATA_DIR/rustup"
 export CARGO_HOME="$XDG_DATA_DIR/cargo"
 
-autoload -Uz compinit promptinit
-source "$ZDOTDIR/prompt_noot_setup.zsh"
+# Add a new line after each command
+precmd() { echo "" }
 
-precmd() {
-  echo ""
-}
-
+# Initialize node version manager
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+# Enable system zsh libraries. The path of these may differe from distro to distro.
+# The paths provided are where Arch installs them (which is also the correct way).
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -27,5 +65,5 @@ alias l="exa -l"
 alias ll="exa -la"
 alias la="exa -alGh --icons --group-directories-first --classify --octal-permissions -S"
 
-# Paths
+# Path
 path+=("$CARGO_HOME/bin")
