@@ -2,6 +2,8 @@
 autoload -Uz promptinit && promptinit
 source "$ZDOTDIR/prompt_noot_setup.zsh"
 
+autoload -Uz compinit && compinit
+
 # Set up directory expansion
 setopt autocd
 setopt menucomplete

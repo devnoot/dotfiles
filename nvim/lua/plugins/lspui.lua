@@ -15,6 +15,7 @@ return {
     {'<Leader>d',    '<cmd>LspUI type_definition<CR>', { desc = "Type Definition" }},
     {'<Leader>ca',   '<cmd>LspUI code_action<CR>', { desc = "Code Action" }},
     {'<Leader>rn',   '<cmd>LspUI rename<CR>', { desc = "Rename" }},
+    {'<Leader>li',   '<cmd>LspUI inlay_hint<CR>', { desc = "Inlay hint" }},
   },
   config = function()
     require('LspUI').setup()
