@@ -3,3 +3,4 @@
 tmux/plugins
 .netrwhist
 zsh/zplug
+zsh/zsh_history

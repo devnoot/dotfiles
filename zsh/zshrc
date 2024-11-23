@@ -38,6 +38,14 @@ setopt longlistjobs
 setopt notify
 
 # Export variables
+
+# Set the location of the history file
+HISTFILE=~/.config/zsh/zsh_history
+# Set the maximum number of history entries saved to the file
+HISTSIZE=10000
+# Set the maximum number of history entries kept in memory during a session
+SAVEHIST=10000
+
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/.local/share"
 export DOOMWADDIR="$HOME/Wads"
