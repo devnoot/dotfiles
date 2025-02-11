@@ -1,5 +1,11 @@
 # noot prompt theme
 
+function virtualenv_prompt {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo " %F{$prompt_noot_color1}(%f🐍 %F{$prompt_noot_color2}$(basename $VIRTUAL_ENV)%f%F{$prompt_noot_color1})%f "
+  fi
+}
+
 prompt_noot_help () {
   cat <<'EOF'
 This prompt is based off of the adam2 prompt that is included with zsh.
@@ -81,7 +87,7 @@ prompt_noot_precmd() {
 
   prompt_noot_choose_prompt
 
-  PS1="$prompt_line_1$prompt_newline$prompt_line_2%B%F{white}$prompt_char %b%f%k"
+  PS1="$prompt_line_1$prompt_newline$prompt_line_2$(virtualenv_prompt)%B%F{white}$prompt_char %b%f%k"
   PS2="$prompt_line_2$prompt_gfx_bbox_to_mbox%B%F{white}%_> %b%f%k"
   PS3="$prompt_line_2$prompt_gfx_bbox_to_mbox%B%F{white}?# %b%f%k"
   zle_highlight[(r)default:*]="default:fg=$prompt_noot_color4,bold"
