@@ -1,0 +1,9 @@
+[Unit]
+Description=Re-link WSLg Wayland socket into XDG_RUNTIME_DIR
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ln -sf /mnt/wslg/runtime-dir/wayland-0* %t/
+
+[Install]
+WantedBy=default.target
