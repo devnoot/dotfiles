@@ -1,10 +1,17 @@
 return {
   {
+    "projekt0n/github-nvim-theme",
+    name = "github-theme",
+    lazy = false,
+  },
+  {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        theme = "horizon",
+        -- light mode: onelight
+        -- dark mode: 16color
+        theme = "onelight",
       },
     },
   },
@@ -71,6 +78,12 @@ oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.
         sidebars = "transparent",
         floats = "transparent",
       },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "github_light",
     },
   },
 }
