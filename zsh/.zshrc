@@ -14,24 +14,20 @@ export LC_ALL="en_US.UTF-8"
 
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/.local/share"
-export NVM_DIR="$HOME/.local/nvm"
 export EDITOR="nvim"
 export RUSTUP_HOME="$XDG_DATA_DIR/rustup"
 export CARGO_HOME="$XDG_DATA_DIR/cargo"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
-export MOODLE_DOCKER_WWWROOT="$HOME/src/github.com/swarthmore/moodle"
-export MOODLE_DOCKER_DB="pgsql"
-
 ##############################################
-# 1. Completion
+# Completion
 ##############################################
 autoload -Uz compinit && compinit
 setopt menucomplete
 bindkey "^I" expand-or-complete
 
 ##############################################
-# 2. Prompt
+# Prompt
 ##############################################
 RED="%F{red}"
 GREEN="%F{green}"
@@ -80,7 +76,7 @@ precmd() {
 PROMPT="%~$GIT_INFO$PYTHON_INFO ${GREEN}$ ${RESET}"
 
 ##############################################
-# 3. Shell Options
+# Shell Options
 ##############################################
 setopt autocd
 setopt autopushd
@@ -103,16 +99,17 @@ bindkey -v
 autoload -Uz compinit && compinit
 
 ##############################################
-# 4. History Settings
+# History Settings
 ##############################################
-HISTFILE="$HOME/.zhistory"
+HISTFILE="$ZDOTDIR/.zhistory"
 HISTSIZE=100000
 SAVEHIST=100000
 
 
 # Source all .zsh files from "$ZDOTDIR/zsh.d"
 if [ -d "$ZDOTDIR/zsh.d" ]; then
-  for f in "$ZDOTDIR/zsh.d/"*.zsh; do
+  # using quotes here breaks globbing
+  for f in $ZDOTDIR/zsh.d/*.zsh; do
     [ -e "$f" ] && source "$f"
   done
 fi
