@@ -5,6 +5,7 @@ My dotfiles
 ## Requirements 
 
 - A nerd font
+- zsh
 
 ### Neovim
 
@@ -13,3 +14,9 @@ My dotfiles
 ### tmux
 
 - tpm
+
+## Other info 
+
+### zsh
+
+- Files in `zsh/zsh.d` get auto-loaded
