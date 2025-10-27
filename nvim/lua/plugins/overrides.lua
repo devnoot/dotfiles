@@ -1,5 +1,8 @@
 return {
   {
+    "ellisonleao/gruvbox.nvim",
+  },
+  {
     "projekt0n/github-nvim-theme",
     name = "github-theme",
     lazy = false,
@@ -9,9 +12,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        -- light mode: onelight
-        -- dark mode: 16color
-        theme = "onelight",
+        theme = "gruvbox",
       },
     },
   },
@@ -81,9 +82,20 @@ oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.
     },
   },
   {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        layout_strategy = "horizontal",
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
+        winblend = 0,
+      },
+    },
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "github_light",
+      colorscheme = "gruvbox",
     },
   },
 }
