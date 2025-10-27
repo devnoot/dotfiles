@@ -4,3 +4,7 @@ tmux/plugins
 .netrwhist
 zsh/zplug
 zsh/zsh_history
+zsh/.zhistory
+zsh/.zsh_history
+zsh/zsh.d/**
+!zsh/zsh.d/.gitkeep
