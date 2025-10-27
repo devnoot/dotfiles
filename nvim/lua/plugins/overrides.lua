@@ -1,5 +1,8 @@
 return {
   {
+    "isobit/vim-caddyfile",
+  },
+  {
     "ellisonleao/gruvbox.nvim",
   },
   {
