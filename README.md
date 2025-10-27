@@ -6,6 +6,7 @@ My dotfiles
 
 - A nerd font
 - zsh
+- fd
 
 ### Neovim
 
