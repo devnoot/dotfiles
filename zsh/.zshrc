@@ -33,32 +33,63 @@ RED="%F{red}"
 GREEN="%F{green}"
 YELLOW="%F{yellow}"
 BLUE="%F{blue}"
+GREY="%F{grey}"
 RESET="%f"
+
+NEWLINE=$'\n'
+
+PYTHON_ICON_COLOR="blue"
+GIT_ICON_COLOR="red"
+NODE_ICON_COLOR="green"
 
 GIT_INFO=""
 PYTHON_INFO=""
 
 update_prompt_vars() {
+
+    SEPERATOR=" - "
+    DATE_STRING="%F{#868e96}$(date +"%a, %b %d, %Y")%f"
+    TIME_STRING="%F{#868e96}$(date +"%l:%M %p")%f"
+
+    TIMESTAMP=" 🗓 $DATE_STRING $TIME_STRING"
+
     GIT_INFO=""
+    GIT_ICON=""
+    GIT_ICON="%F{$GIT_ICON_COLOR}$GIT_ICON%f"
+
     PYTHON_INFO=""
+    PYTHON_ICON="󱔎"
+    PYTHON_ICON="%F{$PYTHON_ICON_COLOR}$PYTHON_ICON%f"
+
+    NODE_INFO=""
+    NODE_ICON=""
+    NODE_ICON="%F{$NODE_ICON_COLOR}$NODE_ICON%f"
 
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
         local commit=$(git rev-parse --short HEAD 2>/dev/null)
-        GIT_INFO=" %F{yellow}[$branch%f%F{white}@%f%F{magenta}$commit%f]"
+        branch="%F{yellow}$branch%f"
+        seperator="%F{white}@%f"
+        commit="%F{magenta}$commit%f"
+        GIT_INFO="$GIT_ICON $branch$seperator$commit"
     fi
 
     if [[ -n "$VIRTUAL_ENV" ]]; then
-        PYTHON_INFO=" ${BLUE}[venv:$(basename $VIRTUAL_ENV)]${RESET}"
+        python_version=v$(python --version 2>&1 | awk '{print $2}')
+        PYTHON_INFO="$PYTHON_ICON %F{#868e96}$python_version%f${RESET}"
+    fi
+
+    if [[ -n "$NVM_BIN" ]]; then
+        NODE_INFO="$NODE_ICON %F{#868e96}$(node -v)${RESET}"
     fi
 }
 
 function zle-keymap-select {
     update_prompt_vars
     if [[ ${KEYMAP} == vicmd ]]; then
-        PROMPT="$PYTHON_INFO %~$GIT_INFO ${RED}$ ${RESET}"
+        PROMPT="$TIMESTAMP$SEPERATOR$PYTHON_INFO$SEPERATOR$NODE_INFO$SEPERATOR$GIT_INFO$NEWLINE${RED}%~ $ ${RESET}"
     else
-        PROMPT="$PYTHON_INFO %~$GIT_INFO ${GREEN}$ ${RESET}"
+        PROMPT="$TIMESTAMP$SEPERATOR$PYTHON_INFO$SEPERATOR$NODE_INFO$SEPERATOR$GIT_INFO$NEWLINE${GREEN}%~ $ ${RESET}"
     fi
     zle reset-prompt
 }
@@ -71,6 +102,7 @@ zle -N zle-line-init
 
 precmd() {
     update_prompt_vars
+    printf '%*s\n'
 }
 
 PROMPT="%~$GIT_INFO$PYTHON_INFO ${GREEN}$ ${RESET}"

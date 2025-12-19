@@ -95,7 +95,7 @@ oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "tokyonight",
     },
   },
 }
