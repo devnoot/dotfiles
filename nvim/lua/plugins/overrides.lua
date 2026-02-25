@@ -1,8 +1,5 @@
 return {
   {
-    "isobit/vim-caddyfile",
-  },
-  {
     "ellisonleao/gruvbox.nvim",
   },
   {
@@ -15,7 +12,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
       options = {
-        theme = "gruvbox",
+        theme = "tomorrow_night",
       },
     },
   },
@@ -98,7 +95,7 @@ oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "tokyonight",
     },
   },
 }

@@ -7,11 +7,10 @@
 ###########################################################
 
 ##############################################
-# 0. Environment
+# 1. Environment
 ##############################################
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-
 export XDG_CONFIG_DIR="$HOME/.config"
 export XDG_DATA_DIR="$HOME/.local/share"
 export EDITOR="nvim"
@@ -19,46 +18,100 @@ export RUSTUP_HOME="$XDG_DATA_DIR/rustup"
 export CARGO_HOME="$XDG_DATA_DIR/cargo"
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
+# History Settings
+HISTFILE="$ZDOTDIR/.zhistory"
+HISTSIZE=100000
+SAVEHIST=100000
+
 ##############################################
-# Completion
+# 2. Shell Options
+##############################################
+setopt autocd              # cd by typing directory name
+setopt autopushd           # Make cd push the old directory onto the dirstack
+setopt pushdignoredups     # No duplicates in directory stack
+setopt noclobber           # Don't overwrite files with >
+setopt longlistjobs        # List jobs in long format
+setopt notify              # Report status of background jobs immediately
+setopt appendhistory       # Append history to the history file (no overwriting)
+setopt histignoredups      # Ignore duplicate commands in history
+setopt extended_history    # Write the history file in the ":start:elapsed;command" format
+setopt incappendhistory    # Write to the history file immediately, not when the shell exits
+setopt share_history       # Share history between all sessions
+setopt menucomplete        # Autocomplete chooses first item
+setopt autoparamkeys       # Intelligent handling of characters after completion
+setopt no_beep             # NOOT NOOT (silence)
+
+##############################################
+# 3. Completion
 ##############################################
 autoload -Uz compinit && compinit
-setopt menucomplete
+bindkey -v # VI Mode
 bindkey "^I" expand-or-complete
 
 ##############################################
-# Prompt
+# 4. Prompt
 ##############################################
+# Colors
 RED="%F{red}"
 GREEN="%F{green}"
 YELLOW="%F{yellow}"
 BLUE="%F{blue}"
+GREY="%F{242}" # Fixed grey color code
 RESET="%f"
+NEWLINE=$'\n'
 
-GIT_INFO=""
-PYTHON_INFO=""
+# Icons
+PYTHON_ICON="󱔎"
+NODE_ICON=""
+GIT_ICON=""
 
-update_prompt_vars() {
-    GIT_INFO=""
-    PYTHON_INFO=""
+# Allow functions to run inside the prompt
+setopt prompt_subst
 
+# Function to generate the top information line
+build_info_line() {
+    # 1. Time (Native Zsh formatting, faster than $(date))
+    local date_str="%F{246}%D{%a, %b %d, %Y} %D{%l:%M %p}%f"
+    
+    # Initialize array for parts of the prompt
+    local -a prompt_parts
+    prompt_parts+=("$date_str")
+
+    # 2. Python (Shows if VIRTUAL_ENV is set)
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Use python version only if needed, otherwise just icon to save speed
+        local py_ver=$(python --version 2>&1 | awk '{print $2}')
+        prompt_parts+=("%F{blue}${PYTHON_ICON}%f %F{246}v${py_ver}%f")
+    fi
+
+    # 3. Node (Shows if package.json, node_modules, or .nvmrc exists)
+    if [[ -f package.json || -d node_modules || -f .nvmrc ]]; then
+        # Only run node -v if we are actually in a node env
+        local node_ver=$(node -v 2>&1)
+        prompt_parts+=("%F{green}${NODE_ICON}%f %F{246}${node_ver}%f")
+    fi
+
+    # 4. Git
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
         local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
         local commit=$(git rev-parse --short HEAD 2>/dev/null)
-        GIT_INFO=" %F{yellow}[$branch%f%F{white}@%f%F{magenta}$commit%f]"
+        
+        # Format: Icon Branch @ Commit
+        local git_str="%F{red}${GIT_ICON}%f %F{yellow}${branch}%f%F{white}@%f%F{magenta}${commit}%f"
+        prompt_parts+=("$git_str")
     fi
 
-    if [[ -n "$VIRTUAL_ENV" ]]; then
-        PYTHON_INFO=" ${BLUE}[venv:$(basename $VIRTUAL_ENV)]${RESET}"
-    fi
+    # Join parts with a separator
+    # (j: - :) joins the array elements with " - "
+    echo "${(j: - :)prompt_parts}"
 }
 
+# VI Mode Indicator (Red for Command, Green for Insert)
 function zle-keymap-select {
-    update_prompt_vars
     if [[ ${KEYMAP} == vicmd ]]; then
-        PROMPT="$PYTHON_INFO %~$GIT_INFO ${RED}$ ${RESET}"
+        PROMPT_SYMBOL="${RED}%~ $ ${RESET}"
     else
-        PROMPT="$PYTHON_INFO %~$GIT_INFO ${GREEN}$ ${RESET}"
+        PROMPT_SYMBOL="${GREEN}%~ $ ${RESET}"
     fi
     zle reset-prompt
 }
@@ -69,47 +122,19 @@ function zle-line-init {
 }
 zle -N zle-line-init
 
-precmd() {
-    update_prompt_vars
-}
+# Initial default symbol
+PROMPT_SYMBOL="${GREEN}%~ $ ${RESET}"
 
-PROMPT="%~$GIT_INFO$PYTHON_INFO ${GREEN}$ ${RESET}"
-
-##############################################
-# Shell Options
-##############################################
-setopt autocd
-setopt autopushd
-setopt pushdignoredups
-setopt noclobber
-setopt longlistjobs
-setopt notify
-setopt appendhistory
-setopt histignoredups
-setopt extended_history
-setopt incappendhistory
-setopt share_history
-setopt menucomplete
-setopt autoparamkeys
-setopt no_beep
-
-bindkey "^I" expand-or-complete
-bindkey -v
-
-autoload -Uz compinit && compinit
+# Final Prompt Construction
+# We call build_info_line inside ${...} so it runs every time prompt renders
+PROMPT='$(build_info_line)${NEWLINE}${PROMPT_SYMBOL}'
 
 ##############################################
-# History Settings
+# 5. External Source
 ##############################################
-HISTFILE="$ZDOTDIR/.zhistory"
-HISTSIZE=100000
-SAVEHIST=100000
-
-
 # Source all .zsh files from "$ZDOTDIR/zsh.d"
 if [ -d "$ZDOTDIR/zsh.d" ]; then
-  # using quotes here breaks globbing
-  for f in $ZDOTDIR/zsh.d/*.zsh; do
-    [ -e "$f" ] && source "$f"
+  for f in "$ZDOTDIR/zsh.d/"*.zsh(N); do # (N) flag prevents error if no files match
+    source "$f"
   done
 fi

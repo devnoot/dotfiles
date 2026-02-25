@@ -1,23 +1,32 @@
 # dotfiles
 
-My dotfiles
+My configuration files for
 
-## Requirements 
-
-- A nerd font
+- neovim
+- i3
+- polybar
+- rofi
+- picom
+- npm
 - zsh
-- fd
 
-### Neovim
+## Dependencies
 
-- lazyvim
+- M+1 Nerd Font
+- SpaceMono Nerd Font
+- RobotoMono Nerd Font
+- 3270 Nerd Font
+- Terminess Nerd Font Mono
+- Ubuntu Nerd Font Mono
 
-### tmux
 
-- tpm
+- Konsole
 
-## Other info 
+@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
 
-### zsh
+TPM installed at '~/.local/share/tmux/plugins/tpm/tpm'
 
-- Files in `zsh/zsh.d` get auto-loaded
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+
+exec_always --no-startup-id feh --bg-fill "$HOME/Pictures/kanto map.jpg"
+
